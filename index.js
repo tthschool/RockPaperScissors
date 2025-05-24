@@ -1,6 +1,3 @@
-const playRound = 5 
-let userWin = 0
-let computerWin = 0
 
 
 function process(num) {
@@ -12,36 +9,38 @@ function process(num) {
         return 'scissors'
     }
 }
-
+const result = document.querySelector('#result')
 function judge(computerPicked , userPicked) {
     if(computerPicked == 'rock') {
         if(userPicked == 'rock') {
             return 0
         } else if(userPicked == 'paper') {
-            userWin += 1;
+            result.innerHTML = "user win"
             
         } else {
-            computerPicked += 1;
+            result.innerHTML = "pc win"
             
         }
     } else if (computerPicked == 'paper') {
         if (userPicked == 'paper') {
             return 0
         } else if (userPicked == 'rock') {
-            computerWin += 1
+            result.innerHTML = "pc win"
 
         } else {
-            userWin += 1;
+            result.innerHTML = "user win"
+
 
         }
     } else if (computerPicked == 'scissors') {
         if(userPicked == 'scissors' ) {
             return 0
         } else if (userPicked == 'paper') {
-            computerWin += 1
+            result.innerHTML = "pc win"
 
         } else {
-            userWin += 1 
+            result.innerHTML = "user win"
+
 
         }
     }
@@ -53,22 +52,16 @@ function computerPick() {
 }
 
 function userPick() {
-    const userPicked = prompt()
+    const userPicked =  document.querySelector('#user-input')
     return userPicked
 }
 
 
-for (let index = 0; index < playRound; index++) {
+const btn = document.querySelector('#btn')
+btn.addEventListener('click' , () => {
     let computerPicked = computerPick()
     let userPicked = userPick()
     judge(computerPicked , userPicked);
+})
 
 
-}
-
-if (userWin > computerWin) {
-    console.log("user win")
-} else {
-    console.log("computer win");
-    
-}
